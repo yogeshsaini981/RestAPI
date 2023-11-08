@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import jakarta.annotation.Nullable;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.HttpStatusCode;
@@ -32,14 +33,16 @@ public class PatientController {
 
     }
 
-    @PostMapping("/data")
-    public ResponseEntity addPatient(Patient data){
-        if (data == null){
-            return new ResponseEntity("Body cant be null!", HttpStatus.BAD_REQUEST);
+    @PostMapping
+    public ResponseEntity<String> addPatient(@RequestBody Patient patient){
+        if (patient == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Body cant be null!");
         }
 
+        Patient p = new Patient(patient.Id, patient.name, patient.age);
+        patientList.put(patient.Id, p);
 
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body("New patient Id created ");
     }
 
 

@@ -4,13 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Patient {
     @JsonProperty
-    private long Id;
+    public long Id;
 
     @JsonProperty
-    private String name;
+    public String name;
 
     @JsonProperty
-    private int age;
+    public int age;
 
     @Override
     public String toString() {
