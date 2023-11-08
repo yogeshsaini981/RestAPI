@@ -45,5 +45,16 @@ public class PatientController {
         return ResponseEntity.status(HttpStatus.OK).body("New patient Id created ");
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deletePatient(@PathVariable Long id){
+        if(patientList.containsKey(id)){
+            patientList.remove(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Patient with id : " + id + "has been deleted");
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient with id : "+id + " don't exist");
+        }
+    }
+
 
 }
